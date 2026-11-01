@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeline</title>
+</head>
+<body>
+  <div class="timeline">
+    <header class="timeline-header">
+      <h1>Timeline</h1>
+    </header>
+
+    <main class="posts" id="posts">
+      <div class="posts-empty" id="postsEmpty">
+        Записей пока нет. Напишите текст, запишите аудио или видео — и нажмите Enter.
+      </div>
+    </main>
+
+    <footer class="composer">
+      <div class="composer-normal" id="composerNormal">
+        <input
+          type="text"
+          id="postInput"
+          class="post-input"
+          placeholder="Введите текст записи и нажмите Enter"
+          autocomplete="off"
+        >
+        <button type="button" class="icon-btn" id="audioBtn" title="Записать аудио" aria-label="Записать аудио">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5.4-3c0 3-2.54 5.1-5.4 5.1S6.6 14 6.6 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.31 6-6.72h-1.6z"/>
+          </svg>
+        </button>
+        <button type="button" class="icon-btn" id="videoBtn" title="Записать видео" aria-label="Записать видео">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="composer-recording hidden" id="composerRecording">
+        <button type="button" class="icon-btn ok" id="recOkBtn" title="Сохранить запись" aria-label="Сохранить запись">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+        </button>
+        <span class="rec-indicator" aria-hidden="true"></span>
+        <span class="rec-timer" id="recTimer">00:00</span>
+        <button type="button" class="icon-btn cancel" id="recCancelBtn" title="Отменить запись" aria-label="Отменить запись">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <div class="modal-overlay hidden" id="coordsModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="coordsModalTitle">
+      <h2 class="modal-title" id="coordsModalTitle">Что-то пошло не так</h2>
+      <p class="modal-text">
+        К сожалению, нам не удалось определить ваше местоположение.
+        Пожалуйста, разрешите использование геолокации либо введите координаты вручную.
+      </p>
+      <label class="modal-label" for="coordsInput">Широта и долгота через запятую</label>
+      <input
+        type="text"
+        id="coordsInput"
+        class="modal-input"
+        placeholder="Например: 51.50851, -0.12572"
+        autocomplete="off"
+      >
+      <div class="modal-error hidden" id="coordsError">Неверный формат координат</div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="coordsCancel">Отмена</button>
+        <button type="button" class="btn btn-primary" id="coordsOk">ОК</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="video-preview hidden" id="videoPreview">
+    <video id="videoPreviewEl" muted autoplay playsinline></video>
+  </div>
+
+  <div class="toast hidden" id="toast" role="alert"></div>
+
+  <noscript>Для работы приложения необходимо включить JavaScript.</noscript>
+</body>
+</html>
